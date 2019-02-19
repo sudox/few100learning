@@ -62,4 +62,16 @@ It was a drak and stormy night`;
             });
         });
     });
+
+    describe('various literals', () => {
+        it('examples', () => {
+            let n1 = 12; // number
+            let n2 = 1.3; // still a number
+            let n3 = 0xff; // still a number, but hex base 16
+            let n4 = 0b00101; // still anumber but in binary
+            let n5 = 0o744; // octal
+            // typescript thing
+            const salary = 1_000_000;
+        });
+    });
 });
