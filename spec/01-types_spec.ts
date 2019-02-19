@@ -74,4 +74,46 @@ It was a drak and stormy night`;
             const salary = 1_000_000;
         });
     });
+
+    describe('arrays and array literals', () => {
+        it('has them', () => {
+            // const stuff : (number | string)[] = [12, 13];
+            const stuff: Array<number | string> = [12, 13]; // Both create an array that is capable of holding numbers or strings
+            stuff[2] = 'tacos';
+
+            expect(stuff[2]).toBe('tacos');
+
+            let food = stuff[2];
+            // food.    // Intelisense here is the union of string and number for methods
+        });
+        describe('tuples', () => {
+            it('a brief introduction TS', () => {
+                // Very typescript specific
+                let warren: [string, string, number, string];   // Array where the first element is a string, second is a string, third is a number, fourth is a string
+                warren = ['Warren', 'Ellis', 55, 'Musician'];
+                // warren = ['Warren', 'Ellis', '55', 'Musician']; // Note the error on the third element when uncommented
+
+                let occupation = warren[3]; // typeof: string
+                let age = warren[2];    // typeof: number
+            });
+            it('an example', () => {
+                // first is typed as string, last is typed as string, and the function returns string hence the first:string, last: string, the function returns a tuple containing a string and a number
+                function formatName(first: string, last: string): [string, number] {
+                    const fullName = `${last}, ${first}`;
+                    return [fullName, fullName.length];
+                }
+
+                const [fullName, len] = formatName('Han', 'Solo') // called destructuring, the left operand says the right operand returns an array, store the first value in a variable called fullName and the second in a variable called len
+                expect(fullName).toBe('Solo, Han');
+                expect(len).toBe(9);
+
+                // Can be done with tuple variables as well
+                const stuff = ['Jeff', 'Gonzalez', 49];
+                const [firstName, , age] = stuff; // the destructuring where firstName is create based on element 0 and age is created based on element 2 of the stuff tuple/array, note the empty comma section which says to do nothing with element 1o
+                expect(firstName).toBe('Jeff');
+                expect(age).toBe(49);
+            });
+        });
+    });
 });
+
